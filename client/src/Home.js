@@ -1,21 +1,18 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { withRouter } from 'react-router-dom';
+import './styles';
 
-class App extends Component {
+class Home extends Component {
+  state = { }
+
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+      <div className="Home">
+      hikjkjljklj
+        <button>Click Me</button>
       </div>
     );
   }
 }
 
-export default App;
+export default withRouter(Home);
