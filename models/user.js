@@ -9,6 +9,6 @@ const userSchema = new Schema({
     animals: Array
 })
 
-const userModel = mongoose.model('User')
+const userModel = mongoose.model('User', userSchema)
 
-module.exports = mongoose.model('User', userSchema)
+module.exports = userModel
