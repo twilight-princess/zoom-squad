@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
-import './styles';
+//import './styles';
 
 class Home extends Component {
   state = { }
