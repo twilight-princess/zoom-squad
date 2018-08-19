@@ -23,12 +23,12 @@ const animalSchema = new Schema({
       type: Number,
       required: true
     },
-    goodWithCats: boolean,
-    goodWithDogs: boolean,
-    goodWithYoungKids: boolean,
-    goodWithOlderKids: boolean,
+    goodWithCats: Boolean,
+    goodWithDogs: Boolean,
+    goodWithYoungKids: Boolean,
+    goodWithOlderKids: Boolean,
 })
 
-const animalModel = mongoose.model('Animal')
+const animalModel = mongoose.model('Animal', animalSchema)
 
-module.exports = mongoose.model('Animal', animalSchema)
+module.exports = animalModel
