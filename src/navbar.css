@@ -1,0 +1,120 @@
+@import url("https://fonts.googleapis.com/css?family=Roboto");
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+}
+
+#navbar {
+    background-color: rgb(43, 168, 245);
+    width: 100%;
+    overflow: hidden;
+    position: absolute;
+    top: 0px;
+    transition: top 0.4s;
+    box-shadow: 0 2px 4px rgba(0,0,0,.5);
+}
+
+#navbar a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 16px 16px;
+    text-decoration: none;
+    font-family: Roboto;
+    text-shadow: 1px 1px black;    
+}
+#navbar:hover .rightNav:hover {
+    opacity: 5;
+}
+
+#navbar:hover .rightNav{
+    opacity: 0.5;
+}
+
+.leftNav {
+    float: left;
+    font-size: 24px;
+}
+
+.rightNav {
+    float: right;
+    font-size: 20px;
+}
+
+#itemB {
+    margin-right: 20px;
+}
+
+#spaceA {
+    height: 28px;
+    width: 15px;
+}
+
+#spaceB {
+    height: 28px;
+    width: 15px;
+}
+
+#spaceC {
+    height: 28px;
+    width: 15px;
+}
+
+/* .whiteTree {
+    margin-left: 40px;
+    height: 55px;
+    width: auto;
+} */
+
+
+.top-right {
+    position: absolute;
+    top: 160px;
+    right: 330px;
+    font-family: Roboto;
+    color: white;
+    font-size: 80px;
+}
+    
+.bottom-right {
+    position: absolute;
+    top: 280px;
+    right: 250px;
+    font-family: Roboto;
+    color: white;
+    font-size: 80px;
+}
+
+.frontImage {
+    height: 850px;
+    width: 100%;
+}
+    
+.conceptIntro {
+    -webkit-animation: fadein 2s; 
+       -moz-animation: fadein 2s; 
+        -ms-animation: fadein 2s; 
+         -o-animation: fadein 2s; 
+            animation: fadein 2s;
+    }
+    
+@keyframes fadein {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+    
+@-moz-keyframes fadein {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+    
+@-webkit-keyframes fadein {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
