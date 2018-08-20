@@ -1,5 +1,5 @@
 {
-  "name": "zoom-squad",
+  "name": "dog-finder",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -21,7 +21,9 @@
     "webpack": "^4.16.5"
   },
   "devDependencies": {
-    "concurrently": "^3.5.0"
+    "concurrently": "^3.5.0",
+    "nodemon": "^1.18.3",
+    "react-scripts": "1.1.4"
   },
   "scripts": {
     "start": "react-scripts start",
