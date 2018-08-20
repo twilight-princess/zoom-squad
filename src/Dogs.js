@@ -3,6 +3,7 @@ import Navbar from './Navbar';
 import axios from 'axios'
 import noPic from './No-picture.jpg'
 import { Switch, Route, Link } from "react-router-dom";
+
 export default class Dogs extends Component {  
     constructor(props) {
         super(props);
@@ -21,9 +22,9 @@ export default class Dogs extends Component {
     }
     render() {
         const dogList = this.state.Dogs.map( Dog  =>{
-        //    const dogPic = (Dog.media.photos.photo[2].$t !== undefined ? Dog.media.photos.photo[2].$t : noPic)
+            const dogPic = (Dog.media.photos !== undefined && Dog.media.photos.photo[2].$t !== undefined ? Dog.media.photos.photo[2].$t : noPic)
             return(
-                <div className="box1" key={Dog.id.$t}><div className='text1'>{Dog.name.$t} | {Dog.age.$t}<Link to={`/Dogs/${Dog.id.$t}`}><img className="dog1" src={noPic}/></Link>
+                <div className="box1" key={Dog.id.$t}><div className='text1'>{Dog.name.$t} | {Dog.age.$t}<Link to={`/Dogs/${Dog.id.$t}`}><img className="dog1" src={dogPic}/></Link>
                 </div></div>
             )
         }) 
