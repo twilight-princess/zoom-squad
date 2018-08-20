@@ -1,10 +1,21 @@
 const express = require('express')
+const cors = require('cors')
 const mongoose = require('mongoose')
+require('dotenv').config()
 
-const PORT = 8080
-const MONGODB_URI = 'mongodb://localhost:27017/'
+const PORT = process.env.PORT || 8080
+const MONGODB_URI = process.env.MONGODB_URI || 'mongodb://localhost:27017/'
+
+const userRouter = require('./routes/user.js')
+const animalRouter = require('./routes/animal.js')
+
+const bodyParser = require('body-parser')
 
 const app = express()
+
+// Routes
+app.use('/api/user', userRouter)
+app.use('/api/animals', animalRouter)
 
 mongoose.connect(MONGODB_URI, { useNewUrlParser: true })
     .then(db => console.log('connected to mongodb'))
