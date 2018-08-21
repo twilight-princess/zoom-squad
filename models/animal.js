@@ -8,20 +8,20 @@ const animalSchema = new Schema({
     },
     type: {
       type: String,
-      required: true
+      // required: true
     },
     breed: {
       type: String,
-      required: true
+      // required: true
     },
     sex: {
       type: String,
-      required: true,
-      enum: ["male", "female"] 
+      // required: true,
+      enum: ["M", "F"] 
     },
     age: {
       type: Number,
-      required: true
+      // required: true
     },
     goodWithCats: Boolean,
     goodWithDogs: Boolean,

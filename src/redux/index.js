@@ -1,6 +1,7 @@
 import { createStore, applyMiddleware } from "redux";
 import axios from "axios";
 import thunk from "redux-thunk";
+const baseUrl = process.env.BASE_URL;
 
 const initialState = {
   user: "",
@@ -112,12 +113,13 @@ export const findPet = (...args) => {
 export const saveDog = (Dog) => {
   return dispatch => {
     store.dispatch({type: "START_LOADING"})
-    axios.put('/user/'+store.getState().currentUser._id, store.getState().currentUser)
+    // axios.put('/user/'+store.getState().currentUser._id, store.getState().currentUser)
+    axios.post('mongodb://heroku_z713rq04:5cvtgb22lrugah51lboj2n4iu7@ds227332.mlab.com:27332/heroku_z713rq04', {dog: Dog.name})
       .then(response => {
         if (response) {
           store.dispatch({
             type: "SAVE_DOG",
-            dogs: response.data.dogs
+            dog: response.data.name
           })
         }
       })
