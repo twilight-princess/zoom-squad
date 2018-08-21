@@ -1,0 +1,68 @@
+@import url("https://fonts.googleapis.com/css?family=Roboto");
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: lightblue;
+}
+
+.results {
+    margin-left: 60px;
+    margin-top: 120px;
+    color: white;
+    font-family: Roboto;
+}
+
+.box1 {
+    margin-top: 50px;
+    height: 300px;
+    width: 300px;
+}
+
+.text1 {
+    color: black;
+    font-family: Roboto;
+    font-size: 16px;
+    text-align: center;
+}
+
+.description {
+    color: white;
+}
+
+.dogType {
+    color: white;
+}
+
+.dog1 {
+    height: 250px;
+    width: 250px;
+}
+
+.dogInfo {
+    position: relative;    
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    width: 100%;
+    margin-right: auto;
+    background-color: lightblue;
+}
+
+.results {
+    width: 700px;
+    margin: auto;
+    margin-top: 65px;
+}
+
+.dog2 {
+    width: 400px;
+    height: auto;
+}
+
+.moreInfo {
+    text-align: center;
+}

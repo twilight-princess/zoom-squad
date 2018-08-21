@@ -1,20 +1,13 @@
 import React from 'react';
-import { render } from 'react-dom';
-import { BrowserRouter, Switch, Route } from "react-router-dom";
+import ReactDOM from 'react-dom';
+import App from './App';
+import './navbar.css';
+import './dogs.css';
+import './savedDog.css';
+import { BrowserRouter } from "react-router-dom";
 
-import { Provider } from "react-redux";
-import store from "./redux";
-
-import Home from './Home';
-
-render(
-  <BrowserRouter>
-    <Provider store={store}>      
-      <div> 
-        <Switch>
-          <Route path="/" exact component={Home} />
-        </Switch>
-      </div>
-    </Provider>
-  </BrowserRouter>
+ReactDOM.render(  
+    <BrowserRouter>
+        <App/>
+    </BrowserRouter>
 , document.getElementById("root"));
