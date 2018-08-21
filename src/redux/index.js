@@ -110,22 +110,23 @@ export const findPet = (...args) => {
 }
 
 export const saveDog = (Dog) => {
+  console.log(Dog)
   return dispatch => {
     store.dispatch({type: "START_LOADING"})
-    if(store.getState().currentUser) {
-      let dbUrl = 
-      axios.put('/user/'+store.getState().currentUser._id, store.getState().currentUser)
-    } else {
-      axios.put('/user/pet'+Dog.name.$t, store.getState().Dog)
+    Dog = {
+      id: Dog.id.$t,
+      name: Dog.name.$t,
     }
+    axios.post('http://localhost:8080/dogs/', Dog)
       .then(response => {
+        console.log(response)
         if (response) {
           store.dispatch({
             type: "SAVE_DOG",
-            dogs: response.data.dogs
+            dog: response.data.dogs 
           })
         }
-      })
+      })  
     
   }
 }
