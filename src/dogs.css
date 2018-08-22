@@ -10,13 +10,6 @@ body {
     background-color: lightblue;
 }
 
-.results {
-    margin-left: 60px;
-    margin-top: 120px;
-    color: white;
-    font-family: Roboto;
-}
-
 .box1 {
     margin-top: 50px;
     height: 300px;
@@ -35,11 +28,203 @@ body {
     width: 250px;
 }
 
-.dogGrid {
-    position: relative;    
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
+@media only screen and (min-width: 1200px){
+    .dogGrid {
+        position: relative;    
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+        width: 100%;
+        margin-right: auto;
+        margin-left: auto;
+    }
+}
+
+@media only screen and (max-width: 1199px){
+    .dogGrid {
+        position: relative;    
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        width: 100%;
+        margin-right: auto;
+        background-color: lightblue;
+    }
+}
+
+@media only screen and (max-width: 900px){
+    .dogGrid {
+        position: relative;    
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        width: 100%;
+        margin-right: auto;
+        background-color: lightblue;
+    }
+}
+
+@media only screen and (max-width: 600px){
+    .dogGrid {
+        position: relative;    
+        display: grid;
+        grid-template-columns: 1fr;
+        width: 100%;
+        margin-right: auto;
+        background-color: lightblue;
+        justify-content: center;
+    }
+}
+
+@media only screen and (max-width: 699px){
+
+    .results {
+        text-align: center;
+        margin-top: 120px;
+        top: 50px;
+        width: 100%;
+        color: white;
+        font-family: Roboto;
+        text-shadow: 0.5px 0.5px black;
+    }
+    
+    }
+
+@media only screen and (min-width: 700px){
+
+.results {
     width: 100%;
-    margin-right: auto;
+    text-align: center;
+    top: 50px;
+    margin-top: 120px;
+    color: white;
+    font-family: Roboto;
+    text-shadow: 0.5px 0.5px black;
+}
+
+}
+
+@import url("https://fonts.googleapis.com/css?family=Roboto");
+@import url("https://fonts.googleapis.com/css?family=Prata");
+@import url("https://fonts.googleapis.com/css?family=Oswald");
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+}
+
+.frontPhoto {
+    width: 100%;
+    height: auto;
+}
+
+.emptySpace {
+    width: 100%;
+    height: 600px;
+    margin-top: -300px;
+    position: absolute;
     background-color: lightblue;
+}
+
+.conceptIntro {
+    width: 100%;
+    position: absolute;
+    text-align: center;
+    top: 240px;
+    font-size: 60px;
+    color: white;
+    text-shadow: 1px 1px black;
+    z-index: 1;
+    font-family: Prata;
+}
+
+.plots {
+    position: relative;
+    background-color: lightblue; 
+    margin-top: -300px;
+    font-family: Roboto; 
+    z-index: 3; 
+}
+
+.plots1 {
+    margin-top: 50px;
+    text-align: center;
+    margin-right: 100px;
+    margin-left: 100px;
+}
+
+.plotImage1 {
+    margin-left: 250px;
+}
+
+h5 {
+    font-size: 19px;
+    line-height: 30px;
+    display: block;
+    letter-spacing: 1.3px;
+    -webkit-margin-before: 1.67em;
+    -webkit-margin-after: 1.67em;
+    -webkit-margin-start: 0px;
+    -webkit-margin-end: 0px;
+}
+
+h3 {
+    font-size: 16px;
+    line-height: 2px;
+    display: block;
+    letter-spacing: 1.3px;
+    -webkit-margin-before: 1.67em;
+    -webkit-margin-after: 1.67em;
+    -webkit-margin-start: 0px;
+    -webkit-margin-end: 0px;
+}
+
+@media only screen and (min-width: 700px){
+
+    .conceptIntro {
+        width: 100%;
+        position: absolute;
+        text-align: center;
+        top: 240px;
+        font-size: 60px;
+        color: white;
+        text-shadow: 1px 1px black;
+        z-index: 1;
+        font-family: Prata;
+    }
+
+}
+
+@media only screen and (max-width: 699px){
+
+    .conceptIntro {
+        width: 100%;
+        position: absolute;
+        text-align: center;
+        top: 160px;
+        font-size: 48px;
+        color: white;
+        text-shadow: 1px 1px black;
+        z-index: 1;
+        font-family: Prata;
+    }
+
+}
+
+@media only screen and (max-width: 500px){
+
+    .conceptIntro {
+        width: 100%;
+        position: absolute;
+        text-align: center;
+        top: 120px;
+        font-size: 40px;
+        color: white;
+        text-shadow: 1px 1px black;
+        z-index: 1;
+        font-family: Prata;
+    }
+
 }
