@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
-import { searchDogs } from './redux'
+import { searchDogs, resetMessage } from './redux'
 import Dogs from './Dogs'
 import axios from 'axios'
 
@@ -9,7 +9,8 @@ import axios from 'axios'
 class SearchForm extends Component {
     constructor(props) {
         super(props)
-        this.state = { 
+        this.state = {
+            errorMessage: '',
             location: '',
             name: '', 
             breeds: [], 
@@ -24,7 +25,6 @@ class SearchForm extends Component {
         this.handleChange = this.handleChange.bind(this)
         this.handleSubmit = this.handleSubmit.bind(this)
     }
-    
     componentDidMount() {
         axios.get(`https://vschool-cors.herokuapp.com?url=http://api.petfinder.com/breed.list?key=b2d01f997b5d0d9a277ff943820a934c&animal=dog&format=json`)
             .then(response => {
@@ -45,6 +45,9 @@ class SearchForm extends Component {
     render() {
         return (
             <div className="dogSearch">
+		{this.props.errorMessage &&
+		  <div className="error">{this.props.errorMessage}</div>
+		}
                 <form>
                     <label>Location (Zipcode or City, State):</label>
                         <input type="text" name="location" value={this.state.location} onChange={this.handleChange} placeholder="Required" />
@@ -89,8 +92,13 @@ const mapDispatchToProps = dispatch => {
     return {
         searchDogs: search => {
             dispatch(searchDogs(search))
-        }
+        },
     }
 }
+const mapStateToProps = state => {
+  return {
+    errorMessage: state.errorMessage
+  }
+}
 
-export default withRouter(connect(prevState => prevState, mapDispatchToProps)(SearchForm))
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(SearchForm))

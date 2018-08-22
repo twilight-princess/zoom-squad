@@ -34,7 +34,8 @@ const reducer = (prevState = initialState, action) => {
       return {
         ...prevState,
         dogs: action.dogs,
-        loading: false
+        loading: false,
+	errorMessage: ''
       }
     case "SAVE_DOG":
     return {
@@ -42,6 +43,13 @@ const reducer = (prevState = initialState, action) => {
       dogs: action.dogs,
       loading: false
     }
+    case "SEARCH_ERROR":
+      console.log("se: ", action.errorMessage)
+      return {
+        ...prevState,
+	errorMessage: action.errorMessage,
+	loading: false
+      }
     default:
       return prevState
   }
@@ -85,28 +93,35 @@ export const searchDogs = (...args) => {
     store.dispatch({type: "START_LOADING"})
     axios.get(url)
       .then(response => {
-        let Dog = response.data.petfinder.pets.pet 
-        let pets = []
-        if (Dog.length > 0) {
-          console.log(Dog) 
-          for (let i = 0; i < Dog.length; i++) {
-            pets.push({
-              id: Dog[i].id.$t,
-              name:Dog[i].name.$t,
-              breed: Dog[i].breeds.breed.$t,
-              age: Dog[i].age.$t,
-              image: Dog[i].media.photos ? Dog[i].media.photos.photo[2].$t : noPic,
-              description: Dog[i].description.$t,
-              city: Dog[i].contact.city.$t,
-              email: Dog[i].contact.email.$t,
-              options: Dog[i].options && Dog[i].options.option ? Dog[i].options.option.$t : ''
-            })
+	if (response.data.petfinder.pets == undefined) {
+          store.dispatch({
+            type: "SEARCH_ERROR",
+            errorMessage: response.data.petfinder.header.status.message.$t
+	  })
+	} else {
+          let Dog = response.data.petfinder.pets.pet 
+          let pets = []
+          if (Dog.length > 0) {
+            console.log(Dog) 
+            for (let i = 0; i < Dog.length; i++) {
+              pets.push({
+                id: Dog[i].id.$t,
+                name:Dog[i].name.$t,
+                breed: Dog[i].breeds.breed.$t,
+                age: Dog[i].age.$t,
+                image: Dog[i].media.photos ? Dog[i].media.photos.photo[2].$t : noPic,
+                description: Dog[i].description.$t,
+                city: Dog[i].contact.city.$t,
+                email: Dog[i].contact.email.$t,
+                options: Dog[i].options && Dog[i].options.option ? Dog[i].options.option.$t : ''
+              })
+            }
           }
-        }
-        store.dispatch({
-          type: "SEARCH_DOGS", 
-          dogs: pets
-        })
+          store.dispatch({
+            type: "SEARCH_DOGS", 
+            dogs: pets
+          })
+	}
       })
   }
 }
@@ -133,4 +148,13 @@ export const saveDog = (Dog) => {
   }
 }
 
+export const resetMessage = () => {
+	  return dispatch => {
+		  console.log("TEST")
+		      store.dispatch({
+			            type: "SEARCH_ERROR",
+			      	    errorMessage: ""
+			          })
+		    }
+}
 export default store;
