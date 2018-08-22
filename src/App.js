@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
 import Navbar from './Navbar';
 import Home from './Home';
-import Dogs from './Dogs';
 import SavedPets from './SavedPets';
-import savedDog from './SavedDog';
 import Dog from './Dog';
 import Contact from './Contact';
+import SearchForm from './SearchForm';
 import { Provider } from "react-redux";
 import store from "./redux";
 
@@ -20,7 +19,7 @@ export default class App extends Component {
                     <Navbar/>
                     <Switch>
                         <Route exact path="/" component={Home}/>
-                        <Route name="dogs" exact path="/Dogs" component={Dogs}/>
+                        <Route name="dogs" exact path="/Dogs" component={SearchForm}/>
                         <Route path="/Saved-Pets" component={SavedPets}/>
                         <Route path="/Contact" component={Contact}/>
                         <Route path="/Dogs/:id" component={Dog}/>

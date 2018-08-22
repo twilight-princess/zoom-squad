@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 import { searchDogs } from './redux'
+import Dogs from './Dogs'
 import axios from 'axios'
 
 
@@ -78,6 +79,7 @@ class SearchForm extends Component {
                 </form>
                 <button id="search-button" onClick={searchDogs({name: "location", value: this.state.location}, {name:"breed", value: this.state.breed}, {name:"age", value: this.state.age}, {name:"size", value: this.state.size}, {name:"sex", value: this.state.sex})}>Find A Doggie!</button>
                 <br />
+                <Dogs />
             </div>
         )
     }
