@@ -1,12 +1,14 @@
 import { createStore, applyMiddleware } from "redux";
 import axios from "axios";
 import thunk from "redux-thunk";
+import noPic from '../No-picture.jpg'
 
 const initialState = {
   user: "",
   pets: [],
   authenticated: false,
-  loading: false
+  loading: false,
+  dogs: []
 }
 
 const reducer = (prevState = initialState, action) => {
@@ -28,10 +30,10 @@ const reducer = (prevState = initialState, action) => {
         // I don't remember
         ...prevState
       }
-    case "FIND_PETS":
+    case "SEARCH_DOGS":
       return {
         ...prevState,
-        pets: action.pets,
+        dogs: action.dogs,
         loading: false
       }
     case "SAVE_DOG":
@@ -72,8 +74,8 @@ export const authenticate = (username, password) => {
   }
 }
 
-export const findPet = (...args) => {
-  let url = "http://api.petfinder.com/pet.find?key=b2d01f997b5d0d9a277ff943820a934c&animal=dog&location=84105&format=json"
+export const searchDogs = (...args) => {
+  let url = "https://vschool-cors.herokuapp.com?url=http://api.petfinder.com/pet.find?key=b2d01f997b5d0d9a277ff943820a934c&animal=dog&format=json"
   if (args) {
     args.map(arg => {
       return url += "&" + arg.name + "=" + arg.value
@@ -83,7 +85,7 @@ export const findPet = (...args) => {
     store.dispatch({type: "START_LOADING"})
     axios.get(url)
       .then(response => {
-        let Dog = response.data.petfinder.pets.pet
+        let Dog = response.data.petfinder.pets.pet 
         let pets = []
         if (Dog.length > 0) {
           console.log(Dog) 
@@ -93,17 +95,17 @@ export const findPet = (...args) => {
               name:Dog[i].name.$t,
               breed: Dog[i].breeds.breed.$t,
               age: Dog[i].age.$t,
-              media: Dog[i].media.photos.photo[2].$t,
+              image: Dog[i].media.photos ? Dog[i].media.photos.photo[2].$t : noPic,
               description: Dog[i].description.$t,
               city: Dog[i].contact.city.$t,
               email: Dog[i].contact.email.$t,
-              options: Dog[i].optios.option.$t
+              options: Dog[i].options && Dog[i].options.option ? Dog[i].options.option.$t : ''
             })
           }
         }
         store.dispatch({
-          type: "FIND_PET", 
-          pets: pets
+          type: "SEARCH_DOGS", 
+          dogs: pets
         })
       })
   }
