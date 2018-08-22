@@ -28,6 +28,18 @@ const reducer = (prevState = initialState, action) => {
         // I don't remember
         ...prevState
       }
+    case "FIND_PETS":
+      return {
+        ...prevState,
+        pets: action.pets,
+        loading: false
+      }
+    case "SAVE_DOG":
+    return {
+      ...prevState,
+      dogs: action.dogs,
+      loading: false
+    }
     default:
       return prevState
   }
@@ -61,25 +73,61 @@ export const authenticate = (username, password) => {
 }
 
 export const findPet = (...args) => {
-  let url = "http://api.petfinder.com/pet.find?key=b2d01f997b5d0d9a277ff943820a934c&format=json"
+  let url = "http://api.petfinder.com/pet.find?key=b2d01f997b5d0d9a277ff943820a934c&animal=dog&location=84105&format=json"
   if (args) {
     args.map(arg => {
       return url += "&" + arg.name + "=" + arg.value
     })
   }
   return dispatch => {
-
+    store.dispatch({type: "START_LOADING"})
     axios.get(url)
       .then(response => {
-        let pet = {}
-        if (response.data) {
-          console.log(response.data)
+        let Dog = response.data.petfinder.pets.pet
+        let pets = []
+        if (Dog.length > 0) {
+          console.log(Dog) 
+          for (let i = 0; i < Dog.length; i++) {
+            pets.push({
+              id: Dog[i].id.$t,
+              name:Dog[i].name.$t,
+              breed: Dog[i].breeds.breed.$t,
+              age: Dog[i].age.$t,
+              media: Dog[i].media.photos.photo[2].$t,
+              description: Dog[i].description.$t,
+              city: Dog[i].contact.city.$t,
+              email: Dog[i].contact.email.$t,
+              options: Dog[i].optios.option.$t
+            })
+          }
         }
+        store.dispatch({
+          type: "FIND_PET", 
+          pets: pets
+        })
       })
-      store.dispatch({
-        type: "FIND_PET", 
-        pet: "pet"
-      })
+  }
+}
+
+export const saveDog = (Dog) => {
+  console.log(Dog)
+  return dispatch => {
+    store.dispatch({type: "START_LOADING"})
+    Dog = {
+      id: Dog.id.$t,
+      name: Dog.name.$t,
+    }
+    axios.post('http://localhost:8080/dogs/', Dog)
+      .then(response => {
+        console.log(response)
+        if (response) {
+          store.dispatch({
+            type: "SAVE_DOG",
+            dog: response.data.dogs 
+          })
+        }
+      })  
+    
   }
 }
 
