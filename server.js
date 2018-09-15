@@ -9,7 +9,6 @@ const MONGODB_URI = process.env.MONGODB_URI || 'mongodb://localhost:27017/userna
 
 const userRouter = require('./routes/user.js')
 const animalRouter = require('./routes/animal.js')
-
 const bodyParser = require('body-parser')
 
 const app = express()

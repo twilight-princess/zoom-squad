@@ -111,18 +111,23 @@ export const findPet = (...args) => {
 }
 
 export const saveDog = (Dog) => {
+  console.log(Dog)
   return dispatch => {
     store.dispatch({type: "START_LOADING"})
-    // axios.put('/user/'+store.getState().currentUser._id, store.getState().currentUser)
-    axios.post('mongodb://heroku_z713rq04:5cvtgb22lrugah51lboj2n4iu7@ds227332.mlab.com:27332/heroku_z713rq04', {dog: Dog.name})
+    Dog = {
+      id: Dog.id.$t,
+      name: Dog.name.$t,
+    }
+    axios.post('http://localhost:8080/dogs/', Dog)
       .then(response => {
+        console.log(response)
         if (response) {
           store.dispatch({
             type: "SAVE_DOG",
             dog: response.data.name
           })
         }
-      })
+      })  
     
   }
 }

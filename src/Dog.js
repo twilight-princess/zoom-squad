@@ -42,3 +42,4 @@ export default class Dog extends Component {
         )
     }
 }
+
